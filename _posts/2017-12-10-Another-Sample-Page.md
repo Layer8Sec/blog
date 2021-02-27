@@ -1,6 +1,12 @@
 ---
 title: Another Sample Page
 published: true
+date: 2021-02-21
+img: cabin.png
+alt: image-alt
+project-date: Feb 2021
+client: Start Bootstrap
+category: Pentesting Web
 ---
 
 Text can be **bold**, _italic_, ~~strikethrough~~ or `keyword`.
