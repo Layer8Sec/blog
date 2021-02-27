@@ -1,5 +1,5 @@
 ---
-title: Sample Page
+title: Demo Page
 published: true
 ---
 
