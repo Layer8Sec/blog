@@ -6,6 +6,7 @@ img: cabin.png
 alt: image-alt
 project-date: Apr 2021
 client: Start Bootstrap
+excerpt: Pequeña guía para configurar rápidamente los certificados de Let's Encrypt en tu Nessus Professional.
 category: Tools
 ---
 
