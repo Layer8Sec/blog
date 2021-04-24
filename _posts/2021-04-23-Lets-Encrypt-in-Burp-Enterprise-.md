@@ -48,7 +48,7 @@ openssl pkcs12 -export -out certificate.p12 -inkey /etc/letsencrypt/live/demo.fo
 Luego de ejecutarlo nos pedirá que ingresemos una contraseña, acto seguido nos pide volver a ingresarla para verificar que todo funciona correctamente.
 
 ## [](#header-2)Configurando Burp Suite Enterprise
-Luego de esto seguimos el proceso usual para subir nuestro PKCS#12: `**RECORDAR QUE ESTO REINICIARA EL SERVICIO WEB**`
+Luego de esto seguimos el proceso usual para subir nuestro PKCS#12: `**RECORDAR QUE ESTE PROCESO REINICIA EL SERVICIO WEB**`
 
 
 ![](assets\posts\burp_img00.png)
