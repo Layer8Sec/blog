@@ -48,7 +48,8 @@ openssl pkcs12 -export -out certificate.p12 -inkey /etc/letsencrypt/live/demo.fo
 Luego de ejecutarlo nos pedirá que ingresemos una contraseña, acto seguido nos pide volver a ingresarla para verificar que todo funciona correctamente.
 
 ## [](#header-2)Configurando Burp Suite Enterprise
-Luego de esto seguimos el proceso usual para subir nuestro PKCS#12:
+Luego de esto seguimos el proceso usual para subir nuestro PKCS#12: `**RECORDAR QUE ESTO REINICIARA EL SERVICIO WEB**`
+
 
 ![](assets\posts\burp_img00.png)
 
@@ -56,13 +57,15 @@ Luego de esto seguimos el proceso usual para subir nuestro PKCS#12:
 
 ![](assets\posts\burp_img1.png)
 
+## [](#header-3)`Listo!`
+
 ![](assets\posts\burp_img5.png)
 
 
-## [](#header-2)Renovando Certificados en Tenable Nessus
+## [](#header-2)Renovando Certificados 
 Con eso ya tenemos todo ok con el certificado. No olvidemos que los certificados emitidos por Let's Encrypt tienen una caducidad bastante corta. Con lo cual tenemos dos opciones:
 *   ~~Hacer este procedimiento cada 30 días de manera manual~~.
-*   Activar el autorenew . 
+*   Activar el autorenew. 
 
 Vamos por esa última opción :
 ```bash
@@ -74,7 +77,7 @@ Nosotros debemos generar 1 archivos en las siguiente carpeta : `/etc/letsencrypt
 
 En POST pondremos:
 
-`CUIDADO!! Estamos hardcodeando la clave para "automatizarlo"` (No recomendado)
+`CUIDADO!! Estamos hardcodeando la clave para "automatizarlo (No recomendado)"`
 ```bash
 sudo sh -c 'printf "#!/bin/sh" >> /etc/letsencrypt/renewal-hooks/post/burp_enterprise.sh'
 sudo sh -c 'printf "openssl pkcs12 -export -out certificate.p12 -inkey /etc/letsencrypt/live/demo.foo.bar/privkey.pem -in /etc/letsencrypt/live/demo.foo.bar/cert.pem -certfile /etc/letsencrypt/live/demo.foo.bar/chain.pem -password pass:TuClaveSuperSegura\n" >> /etc/letsencrypt/renewal-hooks/post/burp_enterprise.sh'
@@ -83,10 +86,10 @@ sudo chmod 755 /etc/letsencrypt/renewal-hooks/post/burp_enterprise.sh
 ```
 Basicamente creamos un PKCS12 y luego enviamos un correo para que nos avise y podamos hacer la parte manual.
 
-## [](#header-2)`Otras opciones!`
+## [](#header-2) Otras opciones!
 
-Actualmente el archivo p12 se aloja aquí: `/var/lib/BurpSuiteEnterpriseEdition/sslCertificates/certificate.p12`. Aún no llega la caducidad
-pero hemos realizado pruebas generando archivos p12 y todo funciona bien, sin embargo hasta que no renovemos el cert no podemos asegurarlo, en todo caso el script quedaría así: 
+Actualmente el archivo p12 se aloja aquí: `/var/lib/BurpSuiteEnterpriseEdition/sslCertificates/certificate.p12`.
+En teoria sería generar directamente el pkcs12 cada 30 dias en esta carpeta, hemos realizado pruebas generando archivos p12 y todo funciona bien, sin embargo hasta que no renovemos el cert no podemos asegurarlo, en todo caso el script quedaría así: 
 
 ```bash
 sudo sh -c 'printf "#!/bin/sh" >> /etc/letsencrypt/renewal-hooks/post/burp_enterprise.sh'
@@ -97,7 +100,7 @@ Luego le damos permisos a los archivos:
 sudo chmod 755 /etc/letsencrypt/renewal-hooks/post/burp_enterprise.sh
 ```
 
-Nuevamente: `CUIDADO!! Estamos hardcodeando la clave para "automatizarlo"` (No recomendado)
+Nuevamente: `CUIDADO!! Estamos hardcodeando la clave para "automatizarlo (No recomendado)"`
 
 
 Keep Hacking!
