@@ -59,7 +59,7 @@ Básicamente detenemos el servicio de  Nessus y reemplazamos los certificados pr
 
 ## [](#header-2)Renovando Certificados en Tenable Nessus
 Hasta el paso previo, ya tendriamos todo ok y funcionando, pero no olvidemos que los certificados emitidos por Let's Encrypt tienen una caducidad bastante corta. Con lo cual tenemos dos opciones:
-*   ~~Hacer este procedimiento cada 3 meses de manera manual~~.
+*   ~~Hacer este procedimiento cada 30 días de manera manual~~.
 *   Activar el autorenew . 
 
 Vamos por esa última opción :
