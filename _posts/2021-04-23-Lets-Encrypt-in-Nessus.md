@@ -10,12 +10,12 @@ category: Tools
 ---
 
 
-![](assets\posts\nessus_img1.jpg)
+![](assets\posts\nessus_img1.png)
 
 ## [](#header-2)Previos
 
-Luego de instalar y configurar nuestro **Tenable Nessus**, parte de las configuraciones de seguridad que debemos realizar es configurar de manera correcta los certificados y dejar correctamente configurados los certificados HTTPS.
-Estamos asumiendo que Nessus Professional está instalado sobre un Sistema Operativo Linux, sin embargo sería la misma lógica para un Sistema Operativo basado en Windows. Tambien se asume que ya tienes configurado el dominoi o subdominio para que resuelva a la dirección IP donde se tiene instalado Tenable Nessus.
+Luego de instalar y configurar nuestro **Tenable Nessus**, parte de las configuraciones de seguridad que debemos realizar es configurar de manera el acceso vía la consola web, configurando nuestros certificados confiables y **Tenable Nessus** no muestre el error de Certificados ya conocido.
+Estamos asumiendo que Nessus Professional está instalado sobre un Sistema Operativo Linux, sin embargo sería una lógica similar para un Sistema Operativo basado en Windows. Tambien se asume que ya tienes configurado el dominio o subdominio para que resuelva a la dirección IP donde se tiene instalado Tenable Nessus.
 
 ## [](#header-2)Instalar Certbot
 
@@ -33,7 +33,7 @@ certbot certonly --standalone --preferred-challenges http -d demo.foo.bar
 En este comando le indicamos a certbot que solo nos cree los certificados y que haga las validaciones levantando un servidor http para realizar las validaciones sobre el dominio /subdominoi al que le queremos generar los certificados.
 Como salida a dicho comando tendremos algo como esto : 
 
-![](assets\posts\nessus_img2.jpg)
+![](assets\posts\nessus_img2.png)
 
 Si todo nos fue bien con el comando ya tenemos casi todo listo.
 
@@ -48,10 +48,41 @@ sudo cp -i /etc/letsencrypt/live/demo.foo.bar/privkey.pem /opt/nessus/var/nessus
 sudo cp -i /etc/letsencrypt/live/demo.foo.bar/cert.pem /opt/nessus/com/nessus/CA/cacert.pem
 sudo service nessusd start
 ```
-Básicamente detenemos el servicio y reemplazamos los certificados generados por `Certbot`
-![](assets\posts\nessus_img3.jpg)
+Básicamente detenemos el servicio de  Nessus y reemplazamos los certificados predefinidos por los certificado generados con `Certbot`
+![](assets\posts\nessus_img3.png)
 
 
+## [](#header-2)Renovando Certificados en Tenable Nessus
+Hasta el paso previo, ya tendriamos todo ok y funcionando, pero no olvidemos que los certificados emitidos por Let's Encrypt tienen una caducidad bastante corta. Con lo cual tenemos dos opciones:
+*   ~~Hacer este procedimiento cada 3 meses de manera manual~~.
+*   Activar el autorenew . 
+
+Vamos por esa última opción :
+```bash
+certbot renew --dry-run
+```
+
+Luego de eso :
+
+```bash
+
+/etc/letsencrypt/renewal-hooks/pre
+sudo sh -c 'printf "#!/bin/sh\nservice nessusd stop\n" > /etc/letsencrypt/renewal-hooks/pre/nessus.sh'
+sudo chmod 755 /etc/letsencrypt/renewal-hooks/pre/nessus.sh
+```
+Y claro tambien 
+```bash
+/etc/letsencrypt/renewal-hooks/post
+
+sudo sh -c 'printf "#!/bin/sh" >> /etc/letsencrypt/renewal-hooks/post/nessus.sh'
+sudo sh -c 'printf "cp -i /etc/letsencrypt/live/demo.foo.bar/fullchain.pem /opt/nessus/com/nessus/CA/servercert.pem\n" >> /etc/letsencrypt/renewal-hooks/post/nessus.sh'
+sudo sh -c 'printf "cp -i /etc/letsencrypt/live/demo.foo.bar/privkey.pem /opt/nessus/var/nessus/CA/serverkey.pem\n" >> /etc/letsencrypt/renewal-hooks/post/nessus.sh'
+sudo sh -c 'printf "cp -i /etc/letsencrypt/live/demo.foo.bar/cert.pem /opt/nessus/com/nessus/CA/cacert.pem\n" >> /etc/letsencrypt/renewal-hooks/post/nessus.sh'
+sudo sh -c 'printf "service nessusd start\n" >> /etc/letsencrypt/renewal-hooks/post/nessus.sh'
+sudo chmod 755 /etc/letsencrypt/renewal-hooks/post/nessus.sh
+```
+
+ This is an unordered list following a header.
  can be **bold**, _italic_, ~~strikethrough~~ or `keyword`.
 
 [Para un mayor Link to another page](another-page).
