@@ -21,7 +21,7 @@ Estamos asumiendo que Nessus Professional está instalado sobre un Sistema Opera
 
 ## [](#header-2)Instalar Certbot
 
-En este caso, como va a depender de la distribución sobre la que se quiera instalar el `Certbot` por lo cual les recomendamos revisar la web oficial para tener las especificaciones por cada caso: 
+En este caso, dependerá de la distribución sobre la que se quiera instalar el `Certbot`, por lo cual les recomendamos revisar la web oficial para tener las especificaciones por cada caso: 
 
 [Link a la Web de Certbot](https://certbot.eff.org/).
 
