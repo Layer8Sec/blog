@@ -11,7 +11,8 @@ category: Tools
 
 ## [](#header-2)Previos
 
-`Esto no se trata de una guía oficial, es algo que nos ha funcionado y esperamos que sea de utilidad. Run it at your own risk`
+`Esto no se trata de una guía oficial, es algo que nos ha funcionado y esperamos que sea de utilidad.
+Run it at your own risk`
 
 Luego de instalar y configurar nuestro **Tenable Nessus**, parte de las configuraciones de seguridad que debemos realizar es configurar de manera el acceso vía la consola web, configurando nuestros certificados confiables y **Tenable Nessus** no muestre el error de Certificados ya conocido.
 Estamos asumiendo que Nessus Professional está instalado sobre un Sistema Operativo Linux, sin embargo sería una lógica similar para un Sistema Operativo basado en Windows. Tambien se asume que ya tienes configurado el dominio o subdominio para que resuelva a la dirección IP donde se tiene instalado Tenable Nessus.
