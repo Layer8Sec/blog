@@ -10,7 +10,7 @@ category: Tools
 ---
 
 
-![](assets\posts\nessus_img.jpg)
+![](assets\posts\nessus_img1.jpg)
 
 ## [](#header-2)Previos
 
@@ -33,13 +33,13 @@ certbot certonly --standalone --preferred-challenges http -d demo.foo.bar
 En este comando le indicamos a certbot que solo nos cree los certificados y que haga las validaciones levantando un servidor http para realizar las validaciones sobre el dominio /subdominoi al que le queremos generar los certificados.
 Como salida a dicho comando tendremos algo como esto : 
 
-![](assets\posts\nessus_img.jpg)
+![](assets\posts\nessus_img2.jpg)
 
 Si todo nos fue bien con el comando ya tenemos casi todo listo.
 
-## [](#header-2)Configurando Certificados en Tenable Nessus
-Ahora que ya tenemos los certificados generados 
 
+## [](#header-2)Configurando Certificados en Tenable Nessus
+Ahora que ya tenemos los certificados generados vamos a ejecutar lo siguiente:
 
 ```bash
 sudo service nessusd stop
@@ -48,6 +48,8 @@ sudo cp -i /etc/letsencrypt/live/demo.foo.bar/privkey.pem /opt/nessus/var/nessus
 sudo cp -i /etc/letsencrypt/live/demo.foo.bar/cert.pem /opt/nessus/com/nessus/CA/cacert.pem
 sudo service nessusd start
 ```
+Básicamente detenemos el servicio y reemplazamos los certificados generados por `Certbot`
+![](assets\posts\nessus_img3.jpg)
 
 
  can be **bold**, _italic_, ~~strikethrough~~ or `keyword`.
