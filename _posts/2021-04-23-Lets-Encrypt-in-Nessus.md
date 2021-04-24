@@ -2,10 +2,8 @@
 title: ¿Cómo instalar los certificados emitidos por Let's Encrypt en Tenable Nessus?
 published: true
 date: 2021-04-23
-img: cabin.png
-alt: image-alt
+img: bullet.png
 project-date: Apr 2021
-client: Start Bootstrap
 excerpt: Pequeña guía para configurar rápidamente los certificados de Let's Encrypt en tu Nessus Professional.
 category: Tools
 ---

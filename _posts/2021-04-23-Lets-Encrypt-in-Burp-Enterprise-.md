@@ -2,10 +2,8 @@
 title: Configurando los certificados emitidos por Let's Encrypt en Burp Suite Enterprise
 published: true
 date: 2021-04-24
-img: cabin.png
-alt: image-alt
+img: bullet.png
 project-date: Apr 2021
-client: Start Bootstrap
 excerpt: Pequeña guía para configurar rápidamente los certificados de Let's Encrypt en tu servidor Burp Suite Enterprise.
 category: Tools
 ---
