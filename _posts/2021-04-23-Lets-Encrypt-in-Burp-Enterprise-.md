@@ -1,7 +1,7 @@
 ---
 title: Configurando los certificados emitidos por Let's Encrypt en Burp Suite Enterprise
 published: true
-date: 2021-04-23
+date: 2021-04-24
 img: cabin.png
 alt: image-alt
 project-date: Apr 2021
@@ -82,9 +82,13 @@ En POST pondremos:
 sudo sh -c 'printf "#!/bin/sh" >> /etc/letsencrypt/renewal-hooks/post/burp_enterprise.sh'
 sudo sh -c 'printf "openssl pkcs12 -export -out certificate.p12 -inkey /etc/letsencrypt/live/demo.foo.bar/privkey.pem -in /etc/letsencrypt/live/demo.foo.bar/cert.pem -certfile /etc/letsencrypt/live/demo.foo.bar/chain.pem -password pass:TuClaveSuperSegura\n" >> /etc/letsencrypt/renewal-hooks/post/burp_enterprise.sh'
 sudo sh -c 'printf "mail -s \"Certificado PKCS#12 Generado\" -t john@layer8.pe \n" >> /etc/letsencrypt/renewal-hooks/post/burp_enterprise.sh'
-sudo chmod 755 /etc/letsencrypt/renewal-hooks/post/burp_enterprise.sh
 ```
 Basicamente creamos un PKCS12 y luego enviamos un correo para que nos avise y podamos hacer la parte manual.
+
+Luego le damos permisos a los archivos: 
+```bash
+sudo chmod 755 /etc/letsencrypt/renewal-hooks/post/burp_enterprise.sh
+```
 
 ## [](#header-2) Otras opciones!
 
