@@ -30,15 +30,17 @@ This is a normal paragraph following a header. GitHub is a code hosting platform
 ### [](#header-3)Header 3
 
 ```bash
-//
 certbot certonly --standalone --preferred-challenges http -d demo.foo.bar
-
-// Javascript code with syntax highlighting.
-var fun = function lang(l) {
-  dateformat.i18n = require('./lang/' + l)
-  return true;
-}
 ```
+
+```bash
+sudo service nessusd stop
+sudo cp -i /etc/letsencrypt/live/demo.foo.bar/fullchain.pem /opt/nessus/com/nessus/CA/servercert.pem
+sudo cp -i /etc/letsencrypt/live/demo.foo.bar/privkey.pem /opt/nessus/var/nessus/CA/serverkey.pem
+sudo cp -i /etc/letsencrypt/live/demo.foo.bar/cert.pem /opt/nessus/com/nessus/CA/cacert.pem
+sudo service nessusd start
+```
+This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.
 
 ```ruby
 # Ruby code with syntax highlighting
