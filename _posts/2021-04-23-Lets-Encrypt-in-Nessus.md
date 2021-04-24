@@ -32,7 +32,7 @@ Lo primero en hacer es lo siguiente:
 ```bash
 certbot certonly --standalone --preferred-challenges http -d demo.foo.bar
 ```
-En este comando le indicamos a certbot que solo nos cree los certificados y que haga las validaciones levantando un servidor http para realizar las validaciones sobre el dominio /subdominoi al que le queremos generar los certificados.
+En este comando le indicamos a certbot que solo nos cree los certificados y que haga las validaciones levantando un servidor http para realizar las validaciones sobre el dominio/subdominio al que le queremos generar los certificados.
 Como salida a dicho comando tendremos algo como esto : 
 * * *
 ![](assets\posts\nessus_img2.png)
